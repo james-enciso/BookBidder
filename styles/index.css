@@ -1,0 +1,81 @@
+#headerbox{
+	background-color: #e2ff95;
+	top: 0px;
+	height: auto;
+}
+
+#logoimage{
+	height: 70px;
+	left: 0px;
+}
+
+#titleTag{
+	margin-top: -65px; 
+	margin-left: 100px;
+	font-size: 20pt;
+	color: #ff8578;
+
+}
+
+#aboutbox{
+	background-color: #ffeac4;
+	float: right;
+	width: 50%;
+	height: auto;
+	margin-top: 1px;
+	position: relative;
+	text-align: center;
+
+}
+
+.searchBlock{
+	clear: left;
+	background-color: #ffdd9c;
+	float: left;
+	width: 50%;
+	height: auto;
+	margin-top: 1px;
+	text-align: center;
+}
+
+#footerbox{
+	clear: both;
+	position: fixed;
+	background-color: #e2ff95;
+	float: left;
+	bottom: 1px;
+	color: #ff8578;
+	width: 100%;
+}
+
+.loginbox{
+	background-color: green;
+	float: left;
+	/*height: 25px; */
+	height: auto;
+	margin-top: -20px;
+	width: 100%;
+	color: white;
+}
+
+a{
+	color: white;
+	text-decoration: none;
+}
+a:visited{
+	color: white;
+}
+a:link{
+	color: white;
+}
+a:hover{
+	color: white;
+}
+
+.buttonStyle{
+	
+	background-color: #fd51aa;
+	color: white;
+	border-style: none;
+	
+}
