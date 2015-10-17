@@ -22,7 +22,6 @@ class Book {
 	public function getBookInfoForID(){
 		require_once($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
 		
-		
 			$this -> getBookTitle();
 			if($this -> bookDoesExist == 1){
 				$this -> getBookAuthor();
@@ -33,24 +32,102 @@ class Book {
 			}
 		}
 	
-	private function getBookTitle(){
-			$userArgument = "title";
-			$userValue = $this -> bookEntryDBID;
- 			$this -> title = extractdata($this -> tableName, $userArgument, $userValue, $this -> idvalue);
-	
-				//echo "SSSS: " . $this -> title;
-			
+	public function getBookInfoForTitle($titlequery){
+		require_once($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
+		
+		
+		$tableName = $this -> tableName;
+		$searchQuery = "SELECT id FROM $tableName WHERE title LIKE '$titlequery'";
 
-			if(($this -> title) == NULL){
-				
-				echo '<p class="registrationError">Book Not Found</p>';				$this -> bookDoesExist = 0;
+	$booleanVariable = mysql_query($searchQuery);
+
+
+	while($rows = mysql_fetch_assoc($booleanVariable)){
+		
+		 	$this -> bookEntryDBID = 
+		//extractdata($this -> tableName, "id", $titlequery, "title");	
+				$rows['id'];
+
+			//check if can get title from id
+			$this -> getBookTitle();
+
+		if(($this -> title) == NULL){
+			$this -> bookDoesExist = 0;
 					
 				}else{
 					$this -> bookDoesExist = 1;
-					}
+				}
 				
+			if($this -> bookDoesExist == 1){
+				$this -> getBookAuthor();
+				$this -> getBookISBN();
+				$this -> getBookPrice();
+				$this -> getBookNegotiableStatus();
+				$this -> getSellerNameFromSellerID();
+			}
+
+		//echo all values out
+		echo '<div class="searchbookbg">';
+		echo '<span class="searchbookprice">$ ' .  $this -> price . "<br></span>";
+		echo '<span class="searchbooktitle">'. $this -> title . "<br></span>";
+
+		echo '<span class="searchbooknegotiate">Negotiable: ' . $this -> isnegotiable . "<br></span>";	
+
+		echo '<span class="searchbookseller">Seller: ' .  $this -> sellername . "<br></span>";
+
+		echo '<span class="searchbookauthor">By: ' .  $this -> author . "<br></span>";
+		echo '<span class="searchbookISBN">ISBN: ' .  $this -> ISBN . "<br></span>";
+	
+		echo "</div>";
 
 		
+	}
+	if ($this -> bookEntryDBID == NULL){
+		 	echo '<p class="registrationError">No Books Found</p>';				
+ 	 }
+	/*
+			//fetch book id for title requested, if any
+		 	$this -> bookEntryDBID = 
+		extractdata($this -> tableName, "id", $titlequery, "title");	
+
+			//check if can get title from id
+			$this -> getBookTitle();
+
+		if(($this -> title) == NULL){
+			$this -> bookDoesExist = 0;
+					
+				}else{
+					$this -> bookDoesExist = 1;
+				}
+				
+			if($this -> bookDoesExist == 1){
+				$this -> getBookAuthor();
+				$this -> getBookISBN();
+				$this -> getBookPrice();
+				$this -> getBookNegotiableStatus();
+				$this -> getSellerNameFromSellerID();
+			}
+
+		*/
+		
+		
+		
+		}
+	//----------
+	private function getBookTitle(){
+ 		$this -> title = 
+			extractdata($this -> tableName, "title", $this -> bookEntryDBID, $this -> idvalue);
+				
+
+		if(($this -> title) == NULL){
+				
+			echo '<p class="registrationError">Book Not Found</p>';				
+			$this -> bookDoesExist = 0;
+					
+				}else{
+					$this -> bookDoesExist = 1;
+				}
+						
 		}
 	
 	private function getBookAuthor(){

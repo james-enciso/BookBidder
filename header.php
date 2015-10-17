@@ -8,6 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="/styles/index.css" >
     <link rel="stylesheet" type="text/css" href="/styles/deleteuser.css">
     <link rel="stylesheet" type="text/css" href="/styles/createaccount.css">
+    <link rel="stylesheet" type="text/css" href="/styles/searchtitle.css">
+
 
 
 </head>

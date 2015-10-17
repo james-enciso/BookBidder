@@ -1,0 +1,44 @@
+.searchbookbg{
+	background-color: orangered;
+	margin-top: 2px;
+	color: white;
+	height: auto;
+	clear: left;
+	width: 30%;
+}
+
+.searchbooktitle{
+	font-size: 25pt;
+	margin-left: 5px;
+
+}
+.searchbookprice{
+	color: orchid;
+	float: right;
+	margin-right: 5px;
+	font-size: 12pt;
+	margin-top: 5px;
+	
+}
+.searchbooknegotiate{
+	color: orchid;
+	float: right;
+	clear: both;
+	margin-right: 5px;
+	font-size: 10pt;
+}
+.searchbookseller{
+		color: orchid;
+	float: right;
+	clear: both;
+	margin-right: 5px;
+}
+.searchbookauthor{
+		margin-left: 5px;
+
+}
+
+.searchbookISBN{
+		margin-left: 5px;
+
+}

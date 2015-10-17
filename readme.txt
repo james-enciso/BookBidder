@@ -3,14 +3,13 @@ This project is a proof of concept for an e-commerce platform intended for listi
 Things to improve upon
 - email notification for bid acceptance/rejection status
 - Cancellation link for bidders
-- public book search
-
 - book type (physical, electronic)
 - rating and review system
 - types: eg. novels, magazines, newspapers
 - categories: eg, mystery, romance, entertainment
 - profile page
-
+- title search needs to optimized to not be exact string
+- add ISBN as searchable term
 
 
 -----
@@ -19,4 +18,5 @@ Progress Report
 	- Login functionality working
 	- User registration and validation working
 	- User account deletion working
-	- 
+	- added search ability for BBID and title
+
