@@ -12,7 +12,6 @@ Please fill in the information below to get started<br><br>
 if(isset($_POST['name'])){
 	
 		
-		
 		//set flag for terms and conditions checking
 		$termsStatus = 0;
 				if(isset($_POST['accepted'])){ $termsStatus = 1;}

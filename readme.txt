@@ -7,10 +7,15 @@ Things to improve upon
 - rating and review system
 - types: eg. novels, magazines, newspapers
 - categories: eg, mystery, romance, entertainment
-- profile page
-- title search needs to optimized to not be exact string
+- create profile page
 - add ISBN as searchable term
-
+- style the listing creation page
+- add ability to view bids and accept/deny
+- add ability to remove current listings
+- add permissions to code to prevent unauthorized deletion
+- prevent user from bidding on his own items
+- add error checking to certain value inputs (ie. price)
+- add style to post page
 
 -----
 Progress Report
@@ -19,4 +24,9 @@ Progress Report
 	- User registration and validation working
 	- User account deletion working
 	- added search ability for BBID and title
+	- added ability to view own listings
+	- optimized search to find words within words (for title)
+	- added hyperlinking of books to their respective info pages
+	- added ability to post listings
+	- optimized background processes and functions
 

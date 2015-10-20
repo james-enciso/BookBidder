@@ -1,5 +1,5 @@
 .searchbookbg{
-	background-color: orangered;
+	background-color: #ff0071;
 	margin-top: 2px;
 	color: white;
 	height: auto;
@@ -13,7 +13,7 @@
 
 }
 .searchbookprice{
-	color: orchid;
+	color: #f6afd5;
 	float: right;
 	margin-right: 5px;
 	font-size: 12pt;

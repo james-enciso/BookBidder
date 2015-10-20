@@ -1,56 +1,66 @@
 <?php session_start();
-require "../header.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/header.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/sqlconnect.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/selectdb.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/classes/bookclasses.php";
+
+$newbook = new Book;
+
+
+if(isset($_POST['title'])){
+
+$newbook -> title = $_POST['title'];
+$newbook -> author = $_POST['author'];
+$newbook -> ISBN =  $_POST['ISBN'];
+$newbook -> price = 	$_POST['price'];
+$newbook -> sellerid = $_SESSION['id'];
+
+if(isset( $_POST['negotiable']) && ( $_POST['negotiable'] == 0)){
+	$newbook -> isnegotiable = 0;
+	}else{
+		$newbook -> isnegotiable = 1;
+}
+
+	$newbook -> createNewBookWithGivenParameters();
+	echo '<script>window.location = "/account/checklistings.php";</script>';
 
 
 
-if(isset($_POST['title']) && isset($_POST['author']) && isset($_POST['ISBN']) && $_POST['title'] != ''		){
-	
-
-		require "../sqlconnect.php";
-		
-		mysql_select_db("bookbidder");
-		
-		$tableName = "books";
-		$title = $_POST['title'];
-		$author = $_POST['author'];
-		$isbn = $_POST['ISBN'];
-		//id gotten from cookie. Identifies user
-		$sellerid = $_SESSION['id'];
-		
-		$sql = "INSERT INTO $tableName (title, author, ISBN, sellerid) VALUES ('$title', '$author', '$isbn', '$sellerid')";
-
-		mysql_query($sql);
-
-		header("Location:/account/checkbids.php");
-
-	
-	}
-
-
-
-
-
-
-
-
+}
 
 
 ?>
-<br>
-<center>
-This is where you create a new bid. Enter the info below.<br><br>
+<p class="listingtitle">To create a new item, enter the information below</p>
 
-<form action="" method="post">Book Title: <br> <input name="title" type="text" value="<?php 
+<form action="" method="post">Book Title: <br> <input name="title" type="text" placeholder="Book Title" value="<?php 
 	if(isset($_POST['title'])){
-		echo $_POST['title'];}?>" /><br><br>
-Book Author: <br><input name="author" type="text" value="<?php 
+		echo $_POST['title'];}?>" ><br>
+Book Author: <br><input name="author" type="text" placeholder="Author" value="<?php 
 	if(isset($_POST['author'])){
-		echo $_POST['author'];}?>"/><br><br>
-ISBN <br> <input name="ISBN" type="text" value="<?php 
+		echo $_POST['author'];}?>" ><br>
+ISBN <br> <input name="ISBN" type="text" placeholder="ISBN" value="<?php 
 	if(isset($_POST['ISBN'])){
-		echo $_POST['ISBN'];}?>" /><br>
-<br>
-<input name="" type="submit" value="create" /></form>
+		echo $_POST['ISBN'];}?>"  ><br>
+    Price <br>$ <input name="price" type="text" placeholder="Price" value="<?php 
+	if(isset($_POST['ISBN'])){
+		echo $_POST['ISBN'];}?>"  ><br>
+        
+        Negotiable<br>
+  <label>
+    <input type="radio" name="negotiable" value="0" id="RadioGroup1_0" />
+    No</label>
+  <br>
+  <label>
+    <input type="radio" name="negotiable" value="1" id="RadioGroup1_1" />
+    Yes</label>
+  <br>
+        
+<input name="" type="submit" value="Post Book!" ></form>
 
 
-</center>
+
+<?php
+
+
+require_once ($_SERVER['DOCUMENT_ROOT'] . "/footer.php");
+?>

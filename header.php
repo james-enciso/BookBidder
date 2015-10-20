@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/styles/deleteuser.css">
     <link rel="stylesheet" type="text/css" href="/styles/createaccount.css">
     <link rel="stylesheet" type="text/css" href="/styles/searchtitle.css">
+    <link rel="stylesheet" type="text/css" href="/styles/listings.css">
 
 
 
