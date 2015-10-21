@@ -89,7 +89,7 @@
 				
 				echo '<span class="searchbooknegotiate">Negotiable: ' . $this -> isnegotiable . "<br></span>";	
 				
-				echo '<span class="searchbookseller">Seller: ' .  $this -> sellername . "<br></span>";
+				echo '<span class="searchbookseller">Seller: '. $this -> sellername  ."</span>";
 				
 				echo '<span class="searchbookauthor">By: ' .  $this -> author . "<br></span>";
 				echo '<span class="searchbookISBN">ISBN: ' .  $this -> ISBN . "<br></span>";
@@ -193,7 +193,7 @@
 			$bookid = $this -> bookEntryDBID;
 			$tableName = $this -> tableName;
 			
-			 $selleridVal = extractdata($tableName, "sellerid", $bookid, "id");
+		$this -> sellerid =	 $selleridVal = extractdata($tableName, "sellerid", $bookid, "id");
  			$this -> sellername = extractdata("login", "username", $selleridVal, "id");
 
 

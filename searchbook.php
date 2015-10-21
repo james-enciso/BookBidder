@@ -14,30 +14,33 @@ if(isset($_GET['BBID'])){
 
 	if($currentBook -> bookDoesExist == 1){
 
+echo '<div class="searchbookbg">';
 echo "Title: " . $currentBook -> title . "<br>";
 echo "Author: " .  $currentBook -> author . "<br>";
 echo "ISBN: " .  $currentBook -> ISBN . "<br>";
 echo "Asking Price: $ " .  $currentBook -> price . "<br>";
 echo "Willing to Negotiate: " . $currentBook -> isnegotiable . "<br>";
-echo "Seller: " .  $currentBook -> sellername . "<br>";
-	
+echo 'Seller: <a href="/account/profile.php?id=' .  $currentBook -> sellerid . '">' .  $currentBook -> sellername . "</a><br>";
+	echo "</div>";
 	?>
-    <br>
-------------------
-<br>
-If you'd like to place a bid on this book, enter your information below. If the seller is interested in your offer, he or she will contact you through the information provided.
-<br><br>
+<hr>
+If you would like to place a bid on this book, enter your information below. The seller will contact you with your information provided.
 
-<form action="placebid.php" method="post">Name:<br>
-<input name="name" type="text" ><br>
-Email Address:<br>
-<input name="email" type="text" ><br>
-Phone Number (Optional)<br>
-<input name="phone" type="text" ><br>
-Price Offer: (numbers only, please)<br>
-$<input name="offer" type="text" >
+
+
+<form action="placebid.php" method="post">
+<table>
+<tr><td>Name</td>
+<td><input name="name" type="text" placeholder="John Doe"></td></tr>
+<tr><td>Email Address<br></td>
+<td><input name="email" type="text" placeholder="jdoe@bb.com" ></td></tr>
+<tr><td>Phone Number (Optional)<br></td>
+<td><input name="phone" type="text" placeholder="1-000-000-0000" ></td>
+<tr><td>Price Offer $<br></td>
+<td><input name="offer" type="text" placeholder="0.00" ></td></tr>
 <br>
-<input name="" type="submit" value="submit" >
+</table>
+<input name="" class="buttonStyle" type="submit" value="Place Bid" >
 <input name="bookid" type="hidden" value="<?php echo $bookid; ?>" >
 
 </form>

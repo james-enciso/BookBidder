@@ -30,3 +30,6 @@ Progress Report
 	- added ability to post listings
 	- optimized background processes and functions
 
+	- added profile page (unfinished)
+	- reformatted post page
+	- added hyperlinking to profile page

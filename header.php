@@ -20,7 +20,7 @@
 <div id="headerbox">
 
 <a href="/">
-<img alt="BookBidder Logo" id="logoimage" src="/img/logo.png" >
+<img alt="BookBidder Logo" id="logoimage" src="/img/logo.png">
 </a>
 
 <p id="titleTag">BookBidder<br>

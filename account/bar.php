@@ -1,6 +1,6 @@
 <div class="loginbox">
 
-Welcome <?php echo $_SESSION['name']; ?>! &nbsp;
+<a href="/account/profile.php?id=<?php echo $_SESSION['id']; ?>">Welcome <?php echo $_SESSION['name']; ?>!</a> &nbsp;
 <a href="/account/createlisting.php">Create Listing</a> &nbsp;	
 <a href="/account/checklistings.php">Listings and Bids</a> &nbsp;	
 <a href="/logout.php">Logout</a>	&nbsp;	

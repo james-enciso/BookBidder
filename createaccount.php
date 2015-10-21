@@ -62,32 +62,39 @@ if(isset($_POST['name'])){
 
 
 
-
+<center>
 <form action="createaccount.php" method="POST">
-Name <br> <input name="name" type="text" placeholder="Name" value="<?php 
+<table>
+<tr><td>Name</td><td><input name="name" type="text" placeholder="Name" value="<?php 
 	if(isset($_POST['name'])){
-		echo $_POST['name']; } ?>">
-<br>
-Username <br> <input name="username" type="text" placeholder="Username" value="<?php 
+		echo $_POST['name']; } ?>"></td></tr>
+<tr><td>Username</td>
+<td> <input name="username" type="text" placeholder="Username" value="<?php 
 	if(isset($_POST['username'])){
-		echo $_POST['username']; } ?>" >
-<br>
-Email Address<br><input name="emailaddress" type="text" placeholder="Confirm Password" value="<?php 
+		echo $_POST['username']; } ?>" ></td></tr>
+        
+<tr><td>Email Address</td>
+<td><input name="emailaddress" type="text" placeholder="Email Address" value="<?php 
 	if(isset($_POST['emailaddress'])){
-		echo $_POST['emailaddress']; } ?>">
- <br>
-Password <br><input name="password" type="password" placeholder="Password" value="<?php 
+		echo $_POST['emailaddress']; } ?>"></td></tr>
+        
+<tr><td>Password</td> 
+<td><input name="password" type="password" placeholder="Password" value="<?php 
 	if(isset($_POST['password'])){
-		echo $_POST['password']; } ?>">
-<br>
-Confirm Password<br><input name="password2" type="password" placeholder="Confirm Password" value="<?php 
+		echo $_POST['password']; } ?>"></td></tr>
+
+<tr><td>Confirm Password</td>
+<td><input name="password2" type="password" placeholder="Confirm Password" value="<?php 
 	if(isset($_POST['password2'])){
-		echo $_POST['password2']; } ?>">
+		echo $_POST['password2']; } ?>"></td></tr>
+
+</table>
+<hr>
+<input name="accepted" type="checkbox" <?php if(isset($_POST['accepted'])){echo 'checked="checked"';} ?>  value="" > I have read and accept the privacy policy for BookBidder
 <br>
-<input name="accepted" type="checkbox" <?php if(isset($_POST['accepted'])){echo 'checked="checked"';} ?>  value="" >I have read and accept the privacy policy for BookBidder
-<br><br>
-<input name="" type="submit" value="submit" >
+<input class="buttonStyle" name="" type="submit" value="Create my Account!" >
 </form>
+</center>
 
 </div>
 

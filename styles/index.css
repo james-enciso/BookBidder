@@ -7,6 +7,7 @@
 #logoimage{
 	height: 70px;
 	left: 0px;
+	clear: right;
 }
 
 #titleTag{
@@ -60,22 +61,33 @@
 
 a{
 	color: white;
+	/*color: #00ff08;*/
 	text-decoration: none;
+	
 }
+/*
 a:visited{
 	color: white;
 }
+
 a:link{
 	color: white;
 }
 a:hover{
 	color: white;
 }
-
+*/
 .buttonStyle{
 	
 	background-color: #fd51aa;
 	color: white;
 	border-style: none;
 	
+}
+
+td{
+	text-align: justify;
+}
+.registrationblock{
+text-align: center;
 }

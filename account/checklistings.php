@@ -1,4 +1,6 @@
 <?php session_start();
+require_once $_SERVER['DOCUMENT_ROOT'] . "/logincheckandredirect.php";
+
 require_once "../sqlconnect.php";
 require_once "../header.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/functions.php";
