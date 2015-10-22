@@ -5,16 +5,16 @@
 }
 
 #logoimage{
-	height: 70px;
+	height: 60px;
 	left: 0px;
 	clear: right;
+	float: left;
 }
 
 #titleTag{
-	margin-top: -65px; 
-	margin-left: 100px;
 	font-size: 20pt;
 	color: #ff8578;
+	text-align: left;
 
 }
 
@@ -59,12 +59,25 @@
 	color: white;
 }
 
-a{
+.loginBox a{
 	color: white;
-	/*color: #00ff08;*/
 	text-decoration: none;
 	
 }
+
+.loginBox a:hover{
+	text-decoration: underline;
+}
+
+a{
+	text-decoration: none;
+		color: #fffda3;
+
+}
+a::visited{
+	color: #fffda3;
+}
+
 /*
 a:visited{
 	color: white;

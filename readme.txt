@@ -33,3 +33,6 @@ Progress Report
 	- added profile page (unfinished)
 	- reformatted post page
 	- added hyperlinking to profile page
+
+	- Fixed bugs on the create listing page
+	

@@ -2,7 +2,6 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/logincheckandredirect.php";
 
-
 require_once $_SERVER['DOCUMENT_ROOT'] . "/header.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/sqlconnect.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/selectdb.php";
@@ -16,21 +15,15 @@ if(isset($_POST['title'])){
 $newbook -> title = $_POST['title'];
 $newbook -> author = $_POST['author'];
 $newbook -> ISBN =  $_POST['ISBN'];
-$newbook -> price = 	$_POST['price'];
+$newbook -> price = $_POST['price'];
 $newbook -> sellerid = $_SESSION['id'];
-
-if(isset( $_POST['negotiable']) && ( $_POST['negotiable'] == 0)){
-	$newbook -> isnegotiable = 0;
-	}else{
-		$newbook -> isnegotiable = 1;
-}
-
+$newbook -> isnegotiable = $_POST['negotiable'];
 	$newbook -> createNewBookWithGivenParameters();
-	echo '<script>window.location = "/account/checklistings.php";</script>';
-
-
+	echo '<script>window.location = "/account/checklistings.php" </script>';
 
 }
+
+
 
 
 ?>
@@ -58,11 +51,11 @@ if(isset( $_POST['negotiable']) && ( $_POST['negotiable'] == 0)){
         
 <tr><td>Negotiable<br></td><td>
   <label>
-    <input type="radio" name="negotiable" value="0" id="RadioGroup1_0" />
+    <input type="radio" name="negotiable" value="0" checked="checked">
     No</label>
   <br>
   <label>
-    <input type="radio" name="negotiable" value="1" id="RadioGroup1_1" />
+    <input type="radio" name="negotiable" value="1">
     Yes</label>
   </td></tr>
         </table>
@@ -71,6 +64,4 @@ if(isset( $_POST['negotiable']) && ( $_POST['negotiable'] == 0)){
 
 
 
-<?php
-require_once ($_SERVER['DOCUMENT_ROOT'] . "/footer.php");
-?>
+<?php require_once ($_SERVER['DOCUMENT_ROOT'] . "/footer.php"); ?>

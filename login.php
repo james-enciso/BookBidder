@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "header.php";
 
 //This file checks the database from the log-in information and uses it to authenticate
@@ -38,7 +39,7 @@ $result = mysql_query($query);
 						$name = $rows['username'];
 						
 						//start session
-						session_start();
+						//session_start();
 						$_SESSION['name'] = $rows['username'];
 						$_SESSION['id'] = $rows['id']; 
 						$_SESSION['loggedin'] = 1; 
@@ -61,6 +62,6 @@ if(!isset($_SESSION['name'])){
 	}
 
 require_once("footer.php");
-
 ?>
-	<script>window.location = "/";</script>
+<script>window.location = "/";</script>
+	

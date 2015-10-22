@@ -107,7 +107,8 @@
 		
 
 	public function createNewBookWithGivenParameters(){
-		
+		require_once $_SERVER['DOCUMENT_ROOT'] . "/sqlconnect.php";
+		require_once $_SERVER['DOCUMENT_ROOT'] . "/selectdb.php";
 		if($this -> blankParametersFound() == 0){
 		
 		$title = $this -> title;
