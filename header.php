@@ -33,7 +33,6 @@
 <?php 
 
 if(isset($_SESSION['id'])){
-//	echo "<a href='/account'>View My Account</a><br><br>";
 	require_once $_SERVER["DOCUMENT_ROOT"] . "/account/bar.php";
 	}
 

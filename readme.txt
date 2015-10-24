@@ -16,6 +16,7 @@ Things to improve upon
 - prevent user from bidding on his own items
 - add error checking to certain value inputs (ie. price)
 - add style to post page
+- add description box to post item page and load to viewbook page
 
 -----
 Progress Report
@@ -36,3 +37,5 @@ Progress Report
 
 	- Fixed bugs on the create listing page
 	
+	- Adjusted front page interface design
+

@@ -24,8 +24,8 @@ if(isset($_POST['delete'])){
 $userid = $_SESSION['id'];
 
 //connect to database
-require "../sqlconnect.php";
-mysql_select_db("bookbidder");
+require_once $_SERVER['DOCUMENT_ROOT'] .  "/sqlconnect.php";
+require_once $_SERVER['DOCUMENT_ROOT'] .  "/selectdb.php";
 
 $sql = "DELETE FROM login WHERE id = $userid";
 //execute deletion query

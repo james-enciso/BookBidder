@@ -1,6 +1,7 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/header.php";
  require_once $_SERVER['DOCUMENT_ROOT'] . "/classes/newUserClass.php"; ?>
-<div class="searchBlock">
+<div class="headertofooterspacer">
+<span class="searchBlock">
 
 Create an Account!<br>
 Please fill in the information below to get started<br><br>
@@ -65,7 +66,7 @@ if(isset($_POST['name'])){
 <center>
 <form action="createaccount.php" method="POST">
 <table>
-<tr><td>Name</td><td><input name="name" type="text" placeholder="Name" value="<?php 
+<tr><td>Name</td><td><input class="textbox" name="name" type="text" placeholder="Name" value="<?php 
 	if(isset($_POST['name'])){
 		echo $_POST['name']; } ?>"></td></tr>
 <tr><td>Username</td>
@@ -96,9 +97,11 @@ if(isset($_POST['name'])){
 </form>
 </center>
 
-</div>
+</span>
 
-<div id="aboutbox"><?php  require nl2br("./img/about.txt") ?></div>
+<span id="aboutbox"><?php  require nl2br("./img/about.txt") ?></span>
+
+</div>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/footer.php"; ?>
 

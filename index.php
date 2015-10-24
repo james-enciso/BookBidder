@@ -1,30 +1,52 @@
 <?php session_start(); ?>
 <?php require_once "header.php"; ?>
 
-<div class="searchBlock">
-Bidding on a book?<br>
-Enter the BBID number below<br>
+<div class="headertofooterspacer">
+<span class="searchBlock">
+<br>Bidding on a Book?<br><br>
 
-
+Enter the BBID below<br>
 <form action="searchbook.php" method="get">
-	<input name="BBID" type="text">
-	<input class="buttonStyle" type="submit"  value="search">
+	<input name="BBID" type="text" placeholder="BBID">
+	<input class="buttonStyle" type="submit"  value="Check">
 </form>
 
 Or Search For A Title Below<br>
 <form action="searchbook.php" method="get">
-	<input name="searchtitle" type="text" >
-	<input class="buttonStyle" type="submit"  value="search">
+	<input name="searchtitle" type="text" placeholder="Book Title" >
+	<input class="buttonStyle" type="submit"  value="Search">
 </form>
+
+<span>Browse Categories
+<br>
+	- Category1<br>
+	- Category1<br>
+	- Category1<br>
+	- Category1<br>
+	- Category1<br>
+	- Category1<br>
+	- Category1<br><br>
+</span>
+<span>Latest Books
+<br>
+	- Book1<br>
+	- Book1<br>
+	- Book1<br>
+	- Book1<br>
+	- Book1<br>
+    - Book1<br>
+
+
+</span>
+
+</span>
+
+<span id="aboutbox"><?php  require nl2br("./img/about.txt") ?></span>
+
+<span id="rightsidebar">
+Recent Activity
+</span>
 
 </div>
 
-
-
-<div id="aboutbox"><?php  require nl2br("./img/about.txt") ?></div>
-
-
-
-<?php
-require_once("footer.php");
-?>
+<?php require_once("footer.php"); ?>

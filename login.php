@@ -7,7 +7,7 @@ require_once "header.php";
 require "sqlconnect.php";
 
 //connect to login database
-mysql_select_db("bookbidder");
+require "selectdb.php";
 
 
 //set variables
@@ -58,7 +58,7 @@ $result = mysql_query($query);
 
 if(!isset($_SESSION['name'])){
 	
-	//echo '<center><font color="#FF0000">Failed login.<br> Click <a href=/>Here</a> To Go Back<br></font></center>';
+	echo '<center><font color="#FF0000">Failed login.<br> Click <a href=/>Here</a> To Go Back<br></font></center>';
 	}
 
 require_once("footer.php");

@@ -1,10 +1,11 @@
 <?php
-require "../header.php";
-require "../sqlconnect.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/header.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/sqlconnect.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/selectdb.php";
+
 require "bar.php";
 
 
-mysql_select_db("bookbidder");
 
 //assign variable from given
 $bookid = mysql_real_escape_string($_GET['id']);

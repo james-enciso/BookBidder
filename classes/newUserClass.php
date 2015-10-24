@@ -149,7 +149,9 @@ class NewUser{
 	private function hasExistingUsername(){
 		
 		//if ready, check existing user
-		mysql_select_db("bookbidder");
+		//mysql_select_db("bookbidder");
+		require_once $_SERVER['DOCUMENT_ROOT'] . "/sqlconnect.php";
+		require_once $_SERVER['DOCUMENT_ROOT'] . "/selectdb.php";
 			$tableName = "login";
 			$userArgument = "username";
 			$userValue = $_POST['username'];
