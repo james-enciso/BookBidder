@@ -1,18 +1,56 @@
 <?php
 	
+	/*
+	This is the Book class. All information and methods regarding to books are defined here.
+	There are 3 ways to use it
+		- initWithBBID($BBIDval)
+			- for fetching all book information by BBID
+			- input: BBID
+			- output (array{info, info, info, ...})
+	
+		- getAllBookInfoByTitle($titlequery)
+			- for fetching list of all books having a given title  
+			- input: any title
+			- output: array{ array{info, info...}, array{info, info, ...}, array{info, info, info} }
+	
+		- getAllBookInfoForUserID($userid)
+			- for fetching list of all books posted by a particular user (by sellerid)
+			- input: user id number
+	
+	---
+		- createNewBookWithGivenParameters()
+			- for creating a new book using given parameters
+	
+	
+	*/
+	
 	class Book {
 		
 		//input
-		public $bookEntryDBID;
+	//	private $bookEntryDBID;
+		private $BBID;
 		
 		//output variables
-		public $title;
-		public $author;
-		public $ISBN;
-		public $price;
-		public $sellername;	
-		public $isnegotiable;
-		public $sellerid;
+		private $title;
+		private $author;
+		private $ISBN;
+		private $price;
+		private $sellername;	
+		private $isnegotiable;
+		private $sellerid;
+		
+		
+		
+		//getters
+		//public function setBookTitle(){ return $this -> title; }
+		//public function setBookAuthor(){ return $this -> author; }
+		//public function setBookISBN(){ return $this -> ISBN; }
+		//public function setBookPrice(){ return $this -> price; }
+		//public function getBookSellerName(){return $this -> sellername; }
+		//public function getBookSellerID(){return $this -> sellerid; }
+		//public function getBookIsNegotiable(){return $this -> isnegotiable; }
+				
+	
 		
 		//private attributes that preset arguments
 		private $tableName = "books";
@@ -20,52 +58,90 @@
 		public $bookDoesExist = 0;
 		
 		//function to call other private functions (called in other files to search by BBID)
-		public function getBookInfoForID(){
+		//initialises the class with all information regarding to a Book using the BBID given
+		public function initWithBBID($BBIDval){
 			require_once($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
 			
-			$this -> getBookTitle();
+			$this -> BBID = $BBIDval;
+
+			$this -> setBookTitle();
 			if($this -> bookDoesExist == 1){
-				$this -> getBookAuthor();
-				$this -> getBookISBN();
-				$this -> getBookPrice();
-				$this -> getBookNegotiableStatus();
-				$this -> getSellerNameFromSellerID();
+			
+			
+				$this -> setBookAuthor();
+				$this -> setBookISBN();
+				$this -> setBookPrice();
+				$this -> setBookNegotiableStatus();
+				$this -> setSellerNameFromSellerID();
+				
+				
+					$SetOfBooksArray = array(
+					  "bookid" => $this -> BBID ,
+					  "booktitle" => $this -> title ,
+					  "booknegotiable" => $this -> isnegotiable,
+					  "booksellername" => $this -> sellername,
+					  "booksellerid" => $this -> sellerid,
+					  "bookauthor" => $this -> author,
+					  "bookISBN" => $this -> ISBN,
+					  "bookprice" => $this -> price
+				
+				);
+			 
+			// var_dump($SetOfBooksArray);
+				return $SetOfBooksArray;
+				
 			}
 		}
 		
 		//function to fetch all books containing a certain title requested 
-		public function getBookInfoForTitle($titlequery){
-		require_once($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
+		public function getAllBookInfoByTitle($titlequery){
+			require_once($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
 			
 			$tableName = $this -> tableName;
 			$searchQuery = "SELECT id FROM $tableName WHERE title LIKE '%$titlequery%' ORDER BY id DESC";
 			
-			$this -> performDataFetch($searchQuery);
+			return $this -> performDataFetch($searchQuery);
 		}
 		
 		//---
 		//prints all items listed by a particular person (will add permissions later)
-		public function getBookInfoForUserID($userid){
-			require_once($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
+		public function getAllBookInfoForUserID($userid){
+		 	require_once($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
 			
 			$tableName = $this -> tableName;
 			$searchQuery = "SELECT id FROM $tableName WHERE sellerid = '$userid' ORDER BY id DESC";
 			
-			$this -> performDataFetch($searchQuery);
+						//returned as array with keys
+
+			$fetchedContents =  $this -> performDataFetch($searchQuery);
+			return $fetchedContents;
 		}
 		
 				
 		//fetches all items given a SQL Query that outputs book data in a format
 		private function performDataFetch($searchQuery){
 			
+			$SetOfBooksArray = array();
+			/*
+				"individualBook" => array(
+					"bookid" => "" ,
+					"booktitle" => "" ,
+					"booknegotiable" => "",
+					"booksellername" => "",
+					"bookauthor" => "",
+					"bookISBN" => "",
+				
+				)
+			 );*/
+			
 			$booleanVariable = mysql_query($searchQuery);
 			
 			while($rows = mysql_fetch_assoc($booleanVariable)){
 				
-			 $this -> bookEntryDBID = $rows['id'];
+			 $this -> BBID = $rows['id'];
 								
 				//check if can get title from id
-				$this -> getBookTitle();
+				$this -> setBookTitle();
 				
 				if(($this -> title) == NULL){
 					$this -> bookDoesExist = 0;
@@ -75,13 +151,36 @@
 				}
 				
 				if($this -> bookDoesExist == 1){
-					$this -> getSellerNameFromSellerID();
-					$this -> getBookAuthor();
-					$this -> getBookISBN();
-					$this -> getBookPrice();
-					$this -> getBookNegotiableStatus();
+					$this -> setSellerNameFromSellerID();
+					$this -> setBookAuthor();
+					$this -> setBookISBN();
+					$this -> setBookPrice();
+					$this -> setBookNegotiableStatus();
 				}
 				
+				 $individualBookArray =
+				
+				
+				array(
+				"bookid" => $this -> BBID,
+				"booktitle" => $this -> title,
+				"booknegotiable" => $this -> isnegotiable,
+				"booksellername" => $this -> sellername,
+				"booksellerid" => $this -> sellerid,
+				"bookauthor" => $this -> author,
+				"bookISBN" => $this -> ISBN,
+				"bookprice" => $this -> price
+				
+				);
+				
+				
+				//var_dump($individualBookArray);
+				//$SetOfBooksArray = $individualBookArray;
+
+				$SetOfBooksArray[] = $individualBookArray;
+
+				
+				/*
 				//echo all values out
 				echo '<a href="/searchbook.php?BBID=' . $this -> bookEntryDBID . '"><div class="searchbookbg">';
 				echo '<span class="searchbookprice">$ ' .  $this -> price . "<br></span>";
@@ -96,14 +195,17 @@
 				
 				echo "</div></a>";
 				
+				*/
 				
 			}
-			if ($this -> bookEntryDBID == NULL){
+			if ($this -> BBID == NULL){
 				echo '<p class="registrationError">No Books Found</p>';				
 			}
 			
+			//var_dump($SetOfBooksArray);
+			return $SetOfBooksArray;
 			
-			}
+	}
 		
 
 	public function createNewBookWithGivenParameters(){
@@ -133,10 +235,12 @@
 		
 		//----------
 	
-		private function getBookTitle(){
+		private function setBookTitle(){
 			$this -> title = 
-			extractdata($this -> tableName, "title", $this -> bookEntryDBID, $this -> idvalue);
-			
+			extractdata($this -> tableName, "title", $this -> BBID, $this -> idvalue);
+			$this -> sellerid = 
+			extractdata($this -> tableName, "sellerid", $this -> BBID, $this -> idvalue);
+
 			
 			if(($this -> title) == NULL){
 				
@@ -149,31 +253,30 @@
 			
 		}
 		
-		private function getBookAuthor(){
+		private function setBookAuthor(){
 			$userArgument = "author";
-			$userValue = $this -> bookEntryDBID;
+			$userValue = $this -> BBID;
 			
 			$this -> author = extractdata($this -> tableName, $userArgument, $userValue, $this ->idvalue);
-			
 		}
 		
-		private function getBookISBN(){
+		private function setBookISBN(){
 			$userArgument = "ISBN";
-			$userValue = $this -> bookEntryDBID;
+			$userValue = $this -> BBID;
 			
 			$this -> ISBN = extractdata($this -> tableName, $userArgument, $userValue, $this ->idvalue);
 		}
 		
-		private function getBookPrice(){
+		private function setBookPrice(){
 			$userArgument = "price";
-			$userValue = $this -> bookEntryDBID;
+			$userValue = $this -> BBID;
 			
 			$this -> price = extractdata($this -> tableName, $userArgument, $userValue, $this ->idvalue);
 		}
 		
-		private function getBookNegotiableStatus(){
+		private function setBookNegotiableStatus(){
 			$userArgument = "isnegotiable";
-			$userValue = $this -> bookEntryDBID;
+			$userValue = $this -> BBID;
 			
 			$tmp = extractdata($this -> tableName, $userArgument, $userValue, $this ->idvalue);
 			
@@ -183,15 +286,14 @@
 				case 1: $this -> isnegotiable = "YES";
 					break;
 			}
-			
 		}
 		
-		private function getSellerNameFromSellerID(){
+		private function setSellerNameFromSellerID(){
 			require_once $_SERVER['DOCUMENT_ROOT'] ."/sqlconnect.php";
 			require_once $_SERVER['DOCUMENT_ROOT'] . "/selectdb.php";
 			
 			
-			$bookid = $this -> bookEntryDBID;
+			$bookid = $this -> BBID;
 			$tableName = $this -> tableName;
 			
 		$this -> sellerid =	 $selleridVal = extractdata($tableName, "sellerid", $bookid, "id");
@@ -201,7 +303,6 @@
 			
 			
 		}
-		
 		
 private function blankParametersFound(){
 		$tmpTitle = $this -> title;

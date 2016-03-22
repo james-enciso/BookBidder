@@ -5,13 +5,13 @@
 <span class="searchBlock">
 <br>Bidding on a Book?<br><br>
 
-Enter the BBID below<br>
+Find Listing by BBID<br>
 <form action="searchbook.php" method="get">
 	<input name="BBID" type="text" placeholder="BBID">
 	<input class="buttonStyle" type="submit"  value="Check">
 </form>
 
-Or Search For A Title Below<br>
+Search For A Title<br>
 <form action="searchbook.php" method="get">
 	<input name="searchtitle" type="text" placeholder="Book Title" >
 	<input class="buttonStyle" type="submit"  value="Search">

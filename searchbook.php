@@ -8,20 +8,17 @@ require_once("./classes/bookclasses.php");
 $currentBook = new Book;
 if(isset($_GET['BBID'])){
 
-	$currentBook -> bookEntryDBID = mysql_real_escape_string($_GET['BBID']);
-	$currentBook -> getBookInfoForID();
+//call initialiser. Returns array of attributes relating to specific book
+$bookInfo =		$currentBook -> initWithBBID(mysql_real_escape_string($_GET['BBID']));
 	
+	//var_dump($bookInfo);
 
 	if($currentBook -> bookDoesExist == 1){
 
-echo '<div class="searchbookbg">';
-echo "Title: " . $currentBook -> title . "<br>";
-echo "Author: " .  $currentBook -> author . "<br>";
-echo "ISBN: " .  $currentBook -> ISBN . "<br>";
-echo "Asking Price: $ " .  $currentBook -> price . "<br>";
-echo "Willing to Negotiate: " . $currentBook -> isnegotiable . "<br>";
-echo 'Seller: <a href="/account/profile.php?id=' .  $currentBook -> sellerid . '">' .  $currentBook -> sellername . "</a><br>";
-	echo "</div>";
+
+	require_once($_SERVER['DOCUMENT_ROOT'] . "/functions/printFormattedBookList.php");
+	printFormattedBookList($bookInfo);
+	
 	?>
 <hr>
 If you would like to place a bid on this book, enter your information below. The seller will contact you with your information provided.
@@ -53,7 +50,13 @@ If you would like to place a bid on this book, enter your information below. The
 	
 if(isset($_GET['searchtitle'])){
 
-$currentBook ->  getBookInfoForTitle($_GET['searchtitle']);
+$info = $currentBook ->  getAllBookInfoByTitle($_GET['searchtitle']);
+
+	require_once($_SERVER['DOCUMENT_ROOT'] . "/functions/printFormattedBookList.php");
+	//var_dump($info);
+	printFormattedBookList($info);
+
+
 }
 
 	require_once "footer.php";				

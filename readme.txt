@@ -17,6 +17,13 @@ Things to improve upon
 - add error checking to certain value inputs (ie. price)
 - add style to post page
 - add description box to post item page and load to viewbook page
+- separation between my bids, and my listings
+- view comments
+- add number of bids next to listings list
+- add images for books
+- add genre/category
+
+- add installer for database setup
 
 -----
 Progress Report
@@ -38,4 +45,8 @@ Progress Report
 	- Fixed bugs on the create listing page
 	
 	- Adjusted front page interface design
+	- Optimized backend fetching scripts (Separated data from styling)
+
+
+
 

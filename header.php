@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/styles/searchtitle.css">
     <link rel="stylesheet" type="text/css" href="/styles/listings.css">
 
+<script src="/jquery.js"></script>
 
 
 </head>
